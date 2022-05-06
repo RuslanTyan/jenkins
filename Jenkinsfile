@@ -13,7 +13,7 @@ pipeline {
             steps {
                 println "Init"
                 checkout scm([$class: 'GitSCM',
-                    branches: "task-rtyan-test-downstream-status"
+                    branches: [[name: "task-rtyan-test-downstream-status"]]
                 ])
             }
         }
