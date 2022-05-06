@@ -1,7 +1,7 @@
 #!groovy
 
 pipeline {
-    agent none
+    agent any
 
     options {
         skipDefaultCheckout()
@@ -12,6 +12,7 @@ pipeline {
         stage("Init") {
             steps {
                 println "Init"
+                checkout scm
             }
         }
         stage("Run downstream") {
