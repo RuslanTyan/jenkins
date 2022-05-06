@@ -12,9 +12,7 @@ pipeline {
         stage("Init") {
             steps {
                 println "Init"
-                checkout scm([$class: 'GitSCM',
-                    branches: [[name: "task-rtyan-test-downstream-status"]]
-                ])
+                checkout scm
             }
         }
         stage("Run script") {
