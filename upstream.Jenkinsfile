@@ -16,7 +16,14 @@ pipeline {
         }
         stage("Run downstream") {
             steps {
-                build(job:"test-proj", wait: true)
+                build(job:"test-proj", wait: false)
+            }
+        }
+        stage("Run script") {
+            steps {
+                script {
+                    sh "bash rtyan-test.sh"
+                }
             }
         }
     }
