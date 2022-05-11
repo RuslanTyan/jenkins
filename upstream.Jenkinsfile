@@ -3,6 +3,8 @@
 import hudson.model.Result
 import hudson.model.Run
 import org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper
+import jenkins.model.CauseOfInterruption.UserInterruption
+
 
 // @NonCPS
 def getPreviousBuildInfo(RunWrapper build) {
