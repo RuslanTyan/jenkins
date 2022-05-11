@@ -9,7 +9,8 @@ import jenkins.model.CauseOfInterruption.UserInterruption
 // @NonCPS
 def getPreviousBuildInfo(RunWrapper build) {
     println build.toString()
-    println build.getCurrentResult().toString()
+    def currentResult = build.getCurrentResult()
+    println currentResult.toString
     def rawBuild = build.getRawBuild()
 //     def prevBuild = rawBuild.getPreviousBuildInProgress()
 //     println "Print PreviousBuildInfo"
