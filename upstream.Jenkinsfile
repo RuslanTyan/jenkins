@@ -8,14 +8,15 @@ import jenkins.model.CauseOfInterruption.UserInterruption
 
 // @NonCPS
 def getPreviousBuildInfo(RunWrapper build) {
+    println build.toString()
     def rawBuild = build.getRawBuild()
-    def prevBuild = rawBuild.getPreviousBuildInProgress()
-    println "Print PreviousBuildInfo"
-    def exec = prevBuild.getExecutor()
-    if (exec != null) {
-        echo "!! Aborting older build #${previousBuild.number}"
-        exec.interrupt(Result.ABORTED, new UserInterruption("Aborted by newer build #${newId}"))
-    }
+//     def prevBuild = rawBuild.getPreviousBuildInProgress()
+//     println "Print PreviousBuildInfo"
+//     def exec = prevBuild.getExecutor()
+//     if (exec != null) {
+//         echo "!! Aborting older build #${previousBuild.number}"
+//         exec.interrupt(Result.ABORTED, new UserInterruption("Aborted by newer build #${newId}"))
+//     }
 }
 
 pipeline {
