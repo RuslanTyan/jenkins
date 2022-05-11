@@ -7,8 +7,9 @@ import org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper
 @NonCPS
 def getPreviousBuildInfo(RunWrapper build) {
     def rawBuild = build.getRawBuild()
+    def prevBuild = rawBuild.getPreviousBuildInProgress()
     println "Print PreviousBuildInfo"
-    println rawBuild.toString()
+    println prevBuild.toString()
 }
 
 pipeline {
