@@ -1,5 +1,13 @@
 #!groovy
 
+import org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper
+
+@NonCPS
+def getPreviousBuildInfo(RunWrapper build) {
+    def rawBuild = build.getRawBuild()
+    println rawBuild.toString()
+}
+
 pipeline {
     agent any
 
@@ -13,6 +21,7 @@ pipeline {
             steps {
                 println "Init"
                 checkout scm
+                getPreviousBuildInfo(currentBuild)
             }
         }
         stage("Run downstream") {
