@@ -1,10 +1,13 @@
 #!groovy
 
+import hudson.model.Result
+import hudson.model.Run
 import org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper
 
 @NonCPS
 def getPreviousBuildInfo(RunWrapper build) {
     def rawBuild = build.getRawBuild()
+    println "Print PreviousBuildInfo"
     println rawBuild.toString()
 }
 
