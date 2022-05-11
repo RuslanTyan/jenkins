@@ -4,7 +4,7 @@ import hudson.model.Result
 import hudson.model.Run
 import org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper
 
-@NonCPS
+// @NonCPS
 def getPreviousBuildInfo(RunWrapper build) {
     def rawBuild = build.getRawBuild()
     def prevBuild = rawBuild.getPreviousBuildInProgress()
