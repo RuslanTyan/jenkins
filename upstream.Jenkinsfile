@@ -9,7 +9,11 @@ def getPreviousBuildInfo(RunWrapper build) {
     def rawBuild = build.getRawBuild()
     def prevBuild = rawBuild.getPreviousBuildInProgress()
     println "Print PreviousBuildInfo"
-    println prevBuild.toString()
+    def exec = previousBuild.getExecutor()
+    if (exec != null) {
+        echo "!! Aborting older build #${previousBuild.number}"
+        exec.interrupt(Result.ABORTED, new UserInterruption("Aborted by newer build #${newId}"))
+    }
 }
 
 pipeline {

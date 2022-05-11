@@ -1,6 +1,6 @@
 #!/bin/bash
 
-trap '' 15
+#trap '' 15
 
 cat rtyan-test.result
 
