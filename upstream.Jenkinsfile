@@ -6,7 +6,7 @@ import org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper
 import jenkins.model.CauseOfInterruption.UserInterruption
 
 
-// @NonCPS
+@NonCPS
 def getPreviousBuildInfo(RunWrapper build) {
     println build.toString()
     def currentResult = build.getCurrentResult()
