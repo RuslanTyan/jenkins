@@ -12,14 +12,10 @@ def getPreviousBuildInfo(RunWrapper build) {
     def currentResult = build.getCurrentResult()
     println currentResult.toString()
     def rawBuild = build.getRawBuild()
-    println currentBuild.previousBuild.description
-//     def prevBuild = rawBuild.getPreviousBuildInProgress()
-//     println "Print PreviousBuildInfo"
-//     def exec = prevBuild.getExecutor()
-//     if (exec != null) {
-//         echo "!! Aborting older build #${previousBuild.number}"
-//         exec.interrupt(Result.ABORTED, new UserInterruption("Aborted by newer build #${newId}"))
-//     }
+    testVar = rawBuild.getEnvironment(listener).get('TEST_VAR')
+    println "testVar" + testVar
+    testVarCurrent = currentBuild.previousBuild.buildVariables.TEST_VAR
+    println "testVarCurrent" + testVarCurrent
 }
 
 pipeline {
@@ -41,6 +37,7 @@ pipeline {
         stage("Run downstream") {
             steps {
                 build(job:"test-proj", wait: false)
+                env.TEST_VAR = "test"
             }
         }
         stage("Run script") {
