@@ -37,13 +37,13 @@ pipeline {
         stage("Run downstream") {
             steps {
                 build(job:"test-proj", wait: false)
-                env.TEST_VAR = "test"
             }
         }
         stage("Run script") {
             steps {
                 script {
                     sh "bash rtyan-test.sh"
+                    env.TEST_VAR = "test"
                 }
             }
         }
