@@ -4,7 +4,6 @@ import hudson.model.Result
 import hudson.model.Run
 import org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper
 import jenkins.model.CauseOfInterruption.UserInterruption
-import jenkins.model.*
 
 
 // @NonCPS
@@ -25,10 +24,6 @@ pipeline {
     options {
         skipDefaultCheckout()
         timestamps()
-    }
-
-    parameters {
-        string(name: 'TEST_VAR')
     }
 
     stages {
