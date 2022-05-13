@@ -14,10 +14,10 @@ def getPreviousBuildInfo(RunWrapper build) {
     def rawBuild = build.getRawBuild()
     def listener = rawBuild.getListener()
     def previousBuild = rawBuild.getPreviousBuildInProgress()
-    testVar = previousBuild.getEnvironment(listener).get('TEST_VAR')
-    println "testVar" + testVar
-    testVarCurrent = currentBuild.previousBuild.buildVariables.TEST_VAR
-    println "testVarCurrent" + testVarCurrent
+//     testVar = previousBuild.getEnvironment(listener).get('TEST_VAR')
+//     println "testVar" + testVar
+//     testVarCurrent = currentBuild.previousBuild.buildVariables.TEST_VAR
+//     println "testVarCurrent" + testVarCurrent
 }
 
 pipeline {
@@ -38,10 +38,12 @@ pipeline {
         }
         stage("Run downstream") {
             steps {
-                subTask = build(job:"test-proj", wait: false)
-                println "subTask:"
-                println subTask.getClass()
-                println subTask.dump()
+                script {
+                    subTask = build(job:"test-proj", wait: false)
+                    println "subTask:"
+                    println subTask.getClass()
+                    println subTask.dump()
+                }
             }
         }
         stage("Run script") {
