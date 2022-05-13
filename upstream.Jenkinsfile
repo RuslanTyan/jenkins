@@ -39,7 +39,7 @@ pipeline {
         stage("Run downstream") {
             steps {
                 script {
-                    subTask = build(job:"test-proj", wait: false)
+                    subTask = build(job:"test-proj", propagate: false, wait: false)
                     println "subTask:"
                     println subTask.getClass()
                     println subTask.dump()
