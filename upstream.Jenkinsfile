@@ -20,6 +20,8 @@ def getPreviousBuildInfo(RunWrapper build) {
 //     println "testVarCurrent" + testVarCurrent
 }
 
+def subTask
+
 pipeline {
     agent any
 
@@ -40,6 +42,15 @@ pipeline {
             steps {
                 script {
                     subTask = build(job:"test-proj", propagate: false, wait: false)
+                }
+            }
+        }
+        stage("Wait for subtask") {
+            steps {
+                timeout(120) {
+                    while (subTask == null) {
+                        sleep(time:3,unit:"SECONDS")
+                    }
                     println "subTask:"
                     println subTask.getClass()
                     println subTask.dump()
