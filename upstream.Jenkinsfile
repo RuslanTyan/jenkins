@@ -47,13 +47,15 @@ pipeline {
         }
         stage("Wait for subtask") {
             steps {
-                timeout(120) {
-                    while (subTask == null) {
-                        sleep(time:3,unit:"SECONDS")
+                script {
+                    timeout(120) {
+                        while (subTask == null) {
+                            sleep(time:3,unit:"SECONDS")
+                        }
+                        println "subTask:"
+                        println subTask.getClass()
+                        println subTask.dump()
                     }
-                    println "subTask:"
-                    println subTask.getClass()
-                    println subTask.dump()
                 }
             }
         }
