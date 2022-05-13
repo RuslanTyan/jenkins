@@ -38,7 +38,10 @@ pipeline {
         }
         stage("Run downstream") {
             steps {
-                build(job:"test-proj", wait: false)
+                subTask = build(job:"test-proj", wait: false)
+                println "subTask:"
+                println subTask.getClass()
+                println subTask.dump()
             }
         }
         stage("Run script") {
