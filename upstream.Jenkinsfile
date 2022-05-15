@@ -16,7 +16,11 @@ def getPreviousBuildInfo(RunWrapper build) {
     println "rawBuild:"
     println rawBuild.dump()
     def listener = rawBuild.getListener()
+    println "listener:"
+    println listener.dump()
     def previousBuild = rawBuild.getPreviousBuildInProgress()
+    println "previousBuild:"
+    println previousBuild.dump()
 //     testVar = previousBuild.getEnvironment(listener).get('TEST_VAR')
 //     println "testVar" + testVar
 //     testVarCurrent = currentBuild.previousBuild.buildVariables.TEST_VAR
