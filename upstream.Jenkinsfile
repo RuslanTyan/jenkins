@@ -41,14 +41,14 @@ pipeline {
         stage("Run downstream") {
             steps {
                 script {
-                    subTask = build(job:"test-proj", propagate: false, wait: false)
+                    subTask = build(job:"test-proj", propagate: true, wait: false)
                 }
             }
         }
         stage("Wait for subtask") {
             steps {
                 script {
-                    timeout(120) {
+                    timeout(time: 5, unit: 'MINUTES') {
                         while (subTask == null) {
                             sleep(time:3,unit:"SECONDS")
                         }
