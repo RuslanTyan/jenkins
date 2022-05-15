@@ -10,10 +10,10 @@ import jenkins.model.CauseOfInterruption.UserInterruption
 def getPreviousBuildInfo(RunWrapper build) {
     println build.dump()
     def currentResult = build.getCurrentResult()
-    pringln "currentResult:"
+    println "currentResult:"
     println currentResult.dump()
     def rawBuild = build.getRawBuild()
-    pringln "rawBuild:"
+    println "rawBuild:"
     println rawBuild.dump()
     def listener = rawBuild.getListener()
     def previousBuild = rawBuild.getPreviousBuildInProgress()
