@@ -21,10 +21,10 @@ def getPreviousBuildInfo(RunWrapper build) {
     def previousBuild = rawBuild.getPreviousBuildInProgress()
     println "previousBuild:"
     println previousBuild.dump()
-//     testVar = previousBuild.getEnvironment(listener).get('TEST_VAR')
-//     println "testVar" + testVar
-//     testVarCurrent = currentBuild.previousBuild.buildVariables.TEST_VAR
-//     println "testVarCurrent" + testVarCurrent
+    testVar = previousBuild.getEnvironment(listener).get('TEST_VAR')
+    println "testVar" + testVar
+    testVarCurrent = currentBuild.previousBuild.buildVariables.TEST_VAR
+    println "testVarCurrent" + testVarCurrent
 }
 
 def subTask
@@ -48,6 +48,7 @@ pipeline {
         stage("Run downstream") {
             steps {
                 script {
+                    env.TEST_VAR = "test"
                     subTask = build(job:"test-proj", propagate: true, wait: false)
                 }
             }
@@ -70,7 +71,6 @@ pipeline {
             steps {
                 script {
                     sh "bash rtyan-test.sh"
-                    env.TEST_VAR = "test"
                 }
             }
         }
