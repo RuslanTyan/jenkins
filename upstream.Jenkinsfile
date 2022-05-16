@@ -19,12 +19,14 @@ def getPreviousBuildInfo(RunWrapper build) {
     println "listener:"
     println listener.dump()
     def previousBuild = rawBuild.getPreviousBuildInProgress()
-    println "previousBuild:"
-    println previousBuild.dump()
-    testVar = previousBuild.getEnvironment(listener).get('TEST_VAR')
-    println "testVar" + testVar
-    testVarCurrent = currentBuild.previousBuild.buildVariables.TEST_VAR
-    println "testVarCurrent" + testVarCurrent
+    if (previousBuild != null) {
+        println "previousBuild:"
+        println previousBuild.dump()
+        testVar = previousBuild.getEnvironment(listener).get('TEST_VAR')
+        println "testVar" + testVar
+        testVarCurrent = currentBuild.previousBuild.buildVariables.TEST_VAR
+        println "testVarCurrent" + testVarCurrent
+    }
 }
 
 def subTask
