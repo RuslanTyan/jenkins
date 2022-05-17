@@ -73,12 +73,14 @@ def getBuildCurrentStages(build){
     return data.stages;
 }
 
-def call(build, String stageName){
+def call(build, List protectedStages){
     def stages = getBuildCurrentStages(build)
     if (stages != null) {
         for (stage in stages) {
-            if (stage.name == stageName && stage.status == StatusExt.IN_PROGRESS) {
-                return true
+            for (protectedStage in protectedStages) {
+                if (stage.name == protectedStage && stage.status == StatusExt.IN_PROGRESS) {
+                    return true
+                }
             }
         }
     }
