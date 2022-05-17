@@ -5,29 +5,7 @@ import hudson.model.Run
 import org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper
 import jenkins.model.CauseOfInterruption.UserInterruption
 
-
-@NonCPS
-def getPreviousBuildInfo(RunWrapper build) {
-    println build.dump()
-    def currentResult = build.getCurrentResult()
-    println "currentResult:"
-    println currentResult.dump()
-    def rawBuild = build.getRawBuild()
-    println "rawBuild:"
-    println rawBuild.dump()
-    def listener = rawBuild.getListener()
-    println "listener:"
-    println listener.dump()
-    def previousBuild = rawBuild.getPreviousBuildInProgress()
-    if (previousBuild != null) {
-        println "previousBuild:"
-        println previousBuild.dump()
-        testVar = previousBuild.getEnvironment(listener).get('TEST_VAR')
-        println "testVar" + testVar
-        testVarCurrent = currentBuild.previousBuild.buildVariables.TEST_VAR
-        println "testVarCurrent" + testVarCurrent
-    }
-}
+library 'my-shared-library'
 
 def subTask
 
@@ -44,7 +22,8 @@ pipeline {
             steps {
                 println "Init"
                 checkout scm
-                getPreviousBuildInfo(currentBuild)
+                println Test1(currentBuild)
+                println Test2.test2(currentBuild.getPreviousBuild())
             }
         }
         stage("Run downstream") {
@@ -58,6 +37,17 @@ pipeline {
         stage("Wait for subtask") {
             steps {
                 script {
+                    println BuildStatus.getBuildCurrentStages(currentBuild)
+                    println BuildStatus.getBuildCurrentStages(currentBuild.getPreviousBuild())
+                    println BuildStatus(currentBuild.getPreviousBuild(), 'Wait for subtask')
+                    println Wrapper.stageRunning()
+
+                    timeout(time: 4, unit: 'MINUTES') {
+                        while (Wrapper.stageRunning()) {
+                            sleep(time:5,unit:"SECONDS")
+                            println "Previous build 'Wait for subtask' stage is not yet complete"
+                        }
+                    }
                     timeout(time: 5, unit: 'MINUTES') {
                         while (subTask == null) {
                             sleep(time:3,unit:"SECONDS")
