@@ -9,5 +9,10 @@ def call(list1, list2) {
             println it
         }
     }
+    for (i in list1) {
+        for (y in list2) {
+            println '' + i + y
+        }
+    }
     return true
 }
