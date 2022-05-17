@@ -39,7 +39,6 @@ pipeline {
                 script {
                     println BuildStatus.getBuildCurrentStages(currentBuild)
                     println BuildStatus.getBuildCurrentStages(currentBuild.getPreviousBuild())
-                    println BuildStatus(currentBuild.getPreviousBuild(), 'Wait for subtask')
                     println Wrapper.stageRunning()
                     def list1 = [1,2,3]
                     def list2 = ['one', 'two']

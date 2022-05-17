@@ -1,5 +1,6 @@
 #!groovy
 
 def stageRunning() {
-    return BuildStatus(currentBuild.getPreviousBuild(), ['Wait for subtask', 'Run script'])
+    def List protectedList = ['Wait for subtask', 'Run script']
+    return BuildStatus(currentBuild.getPreviousBuild(), protectedList)
 }
