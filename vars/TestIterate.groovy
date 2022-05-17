@@ -12,6 +12,9 @@ def call(list1, list2) {
     for (i in list1) {
         for (y in list2) {
             println '' + i + y
+            if (y+i == 'two2') {
+                return false
+            }
         }
     }
     return true
