@@ -74,7 +74,7 @@ def getBuildCurrentStages(build){
 }
 
 def call(build, String stageName){
-    def stages = getJobCurrentStages(build)
+    def stages = getBuildCurrentStages(build)
     if (stages != null) {
         for (stage in stages) {
             if (stage.name == stageName && stage.status == StatusExt.IN_PROGRESS) {
