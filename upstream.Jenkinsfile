@@ -41,6 +41,7 @@ pipeline {
                     println BuildStatus.getBuildCurrentStages(currentBuild.getPreviousBuild())
                     println BuildStatus(currentBuild.getPreviousBuild(), 'Wait for subtask')
                     println Wrapper.stageRunning()
+                    TestIterate(list1, list2)
 
                     timeout(time: 4, unit: 'MINUTES') {
                         while (Wrapper.stageRunning()) {
