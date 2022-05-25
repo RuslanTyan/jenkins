@@ -1,7 +1,8 @@
 #!groovy
 
 def test2(build) {
-    return Test1(build)
+    def Test = new Test()
+    return Test.test(build)
 }
 
 return this
